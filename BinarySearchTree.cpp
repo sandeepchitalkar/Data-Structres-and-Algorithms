@@ -76,14 +76,14 @@ int BST::size(node *temp)
 void BST::create() //Create a BST
 {
     node *temp;
-    temp = new node;
-    cout<<"Enter data: ";
+    temp = new node;  //This line is used to allocate memory for node
+    cout<<"Enter data: "; //Read data and save into node data field
     cin>>temp->data;
-    temp->left = temp->right = NULL;
-    if(root == NULL) 
+    temp->left = temp->right = NULL; //make 2 pointer Null
+    if(root == NULL)  //Validate tree is exist or not if root is null create BST
         root = temp;
     else 
-        insert(root, temp);
+        insert(root, temp); //to insert new node in existing tree
 }
 
 void BST::insert(node *root, node *temp) //Insert new node in existing BST
