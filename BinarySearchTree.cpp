@@ -218,16 +218,17 @@ int BST::comparisons(node *root, int key, int height)
         return comparisons(root->left, key, height+1);
 }
 
+// Find height of a tree, defined by the root node
 int BST::nodes_lp(node *root)
 {
     if(root == NULL) 
         return 0;
+    // Find the height of left, right subtrees
     int leftt = nodes_lp(root->left);
     int rightt = nodes_lp(root->right);
-    if(leftt > rightt) 
-        return leftt+1;
-    else 
-        return rightt+1;
+    // Find max(subtree_height) + 1 to get the height of the tree
+    return max(leftt, rightt) + 1;  
+    
 }
 
 void BST::mirror(node *root)
