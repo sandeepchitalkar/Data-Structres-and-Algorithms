@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <cstdlib>
 using namespace std;
-class node
+class node  //Node Structure for AVL tree
 {
 public:
     string word, meaning;
@@ -32,7 +32,7 @@ public:
     void search(node*, string);
     void modify(node*, string);
 };
-int AVL::height(node* temp)
+int AVL::height(node* temp)  //Used to calculate Hight of subtree
 {
     int lh, rh;
     if(temp == NULL)
@@ -41,13 +41,13 @@ int AVL::height(node* temp)
     rh = (temp->right == NULL) ? 0 : 1 + temp->right->ht;
     return max(lh, rh);
 }
-int AVL::BF(node* temp)
+int AVL::BF(node* temp)  //Used to calculate Balance factor of each node
 {
     if(temp == NULL)
         return 0;
     return height(temp->left) - height(temp->right);
 }
-node* AVL::RotateRight(node* parent)
+node* AVL::RotateRight(node* parent)  //Rotate right general function need to make connection while rotating tree to ward right
 {
     node *temp;
     temp = new node;
@@ -58,7 +58,7 @@ node* AVL::RotateRight(node* parent)
     temp->ht = height(temp);
     return temp;
 }
-node* AVL::RotateLeft(node* parent)
+node* AVL::RotateLeft(node* parent) //Rotate left general function need to make connection while rotating tree to ward left
 {
     node *temp;
     temp = new node;
@@ -69,29 +69,29 @@ node* AVL::RotateLeft(node* parent)
     temp->ht = height(temp);
     return temp;
 }
-node* AVL::RR(node *T)
+node* AVL::RR(node *T)  //Rotate towards right 
 {
     T = RotateLeft(T);
     return T;
 }
-node* AVL::LL(node *T)
+node* AVL::LL(node *T) //Rotate towards left 
 {
     T=RotateRight(T);
     return T;
 }
-node* AVL::LR(node *T)
+node* AVL::LR(node *T) //Rotate towards left and then right  
 {
     T->left = RotateLeft(T->left);
     T = RotateRight(T);
     return T;
 }
-node* AVL::RL(node *T)
+node* AVL::RL(node *T) //Rotate towards right and then left 
 {
     T->right = RotateRight(T->right);
     T = RotateLeft(T);
     return T;
 }
-node* AVL::insert(node* temp, string str_w, string str_m)
+node* AVL::insert(node* temp, string str_w, string str_m) // Insert each node into the tree
 {
     if(temp == NULL)
     {
@@ -118,7 +118,7 @@ node* AVL::insert(node* temp, string str_w, string str_m)
     temp->ht = height(temp);
     return temp;
 }
-node* AVL::deleteNode(node* temp, string str_w)
+node* AVL::deleteNode(node* temp, string str_w)  //Delete a node from avl tree
 {
     if(temp == NULL)
         return NULL;
@@ -159,7 +159,7 @@ node* AVL::deleteNode(node* temp, string str_w)
     temp->ht = height(temp);
     return temp;
 }
-void AVL::preorder(node* root)
+void AVL::preorder(node* root)  //Preorder traversal of the tree
 {
     if(root != NULL)
     {
@@ -168,7 +168,7 @@ void AVL::preorder(node* root)
         preorder(root->right);
     }
 }
-void AVL::inorder(node* root)
+void AVL::inorder(node* root)  //Inorder traversal of the tree
 {
     if(root != NULL)
     {
@@ -177,7 +177,7 @@ void AVL::inorder(node* root)
         inorder(root->right);
     }
 }
-void AVL::search(node *root, string str_w)
+void AVL::search(node *root, string str_w)  //Search node in AVL Tree
 {
     if(str_w.compare(root->word) < 0)
     {
@@ -199,7 +199,7 @@ void AVL::search(node *root, string str_w)
         cout<<"Meaning: "<<root->meaning<<endl;
     }
 }
-void AVL::modify(node *root, string str_w)
+void AVL::modify(node *root, string str_w)  //Modify the meaning into the AVL tree
 {
     if(str_w.compare(root->word) < 0)
     {
