@@ -1,3 +1,10 @@
+/* To create a binary tree using an array in C++ and accept each node's data from the user, we can follow the concept of complete binary tree representation using an array. In this representation, the array indices correspond to the tree nodes in the following way:
+The root of the tree is at index 0.
+For any node at index i:
+The left child is at index 2i + 1.
+The right child is at index 2i + 2.
+The parent is at index (i - 1) / 2.
+*/
 #include <iostream>
 #include <vector>
 using namespace std;
